@@ -48,16 +48,12 @@ class main:
         self.menus += menus
 
     def activate(self, startingMenuIndex=0):
-        if self.isDebugging:
-            start = time()
         self.initialise()
         self.loadTheme()
         self.currentMenuIndex = startingMenuIndex
         self.currentMenu = self.menus[self.currentMenuIndex]
         self.currentMenu.activate(self, self.theme)
         self.startMenuRunning()
-        if self.isDebugging:
-            print("Activation : " + str(time() - start))
 
     def startMenuRunning(self):
         if self.currentMenu.runable:

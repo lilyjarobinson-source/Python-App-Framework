@@ -57,9 +57,6 @@ class menu:
     def setRunable(self, runable=True):
         self.runable = runable
 
-    def run(self):
-        self.update()
-
     def updateScreen(self):
         self.root.update()
 
@@ -68,7 +65,7 @@ class menu:
             self.running = True
             self.runInitialisation()
             while self.running:
-                self.run()
+                self.update()
 
     def stopRunning(self):
         if self.runable:

@@ -1,7 +1,6 @@
 M:demoMenu1
 label 3::label,,102,,1,,100,,19,,
 label 2::label,,1,,21,,100,,19,,menu 1
-M:demoMenu2
 M:demoMenu1,demoMenu2
 button 1::button,,1,,1,,100,,19,,text
 label 1::label,,1,,41,,100,,19,,menu 2

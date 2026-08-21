@@ -8,7 +8,6 @@ from DemoMenu2 import demoMenu2
 
 main = main("test", "800x500")
 main.fullscreen()
-main.debug()
 
 demoMenu1 = demoMenu1()
 demoMenu2 = demoMenu2()
