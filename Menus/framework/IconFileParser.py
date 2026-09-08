@@ -61,19 +61,19 @@ class iconFileParser:
         try:
             match data[0]:
                 case "label":
-                    icon = label([data[1], data[2]], [data[3], data[4]], data[5])
+                    icon = label([int(data[1]), int(data[2])], [int(data[3]), int(data[4])], data[5])
                 case "button":
-                    icon = button([data[1], data[2]], [data[3], data[4]], data[5])
+                    icon = button([int(data[1]), int(data[2])], [int(data[3]), int(data[4])], data[5])
                 case "optionBox":
-                    icon = optionBox([data[1], data[2]], [data[3], data[4]], data[5], data[6:])
+                    icon = optionBox([int(data[1]), int(data[2])], [int(data[3]), int(data[4])], data[5], data[6:])
                 case "entry":
-                    icon = entry([data[1], data[2]], [data[3], data[4]])
+                    icon = entry([int(data[1]), int(data[2])], [int(data[3]), int(data[4])])
                 case "listBox":
-                    icon = listBox([data[1], data[2]], [data[3], data[4]])
+                    icon = listBox([int(data[1]), int(data[2])], [int(data[3]), int(data[4])])
                 case "canvas":
-                    icon = canvas([data[1], data[2]], [data[3], data[4]])
+                    icon = canvas([int(data[1]), int(data[2])], [int(data[3]), int(data[4])])
                 case "image":
-                    icon = image([data[1], data[2]], [data[3], data[4]])
+                    icon = image([int(data[1]), int(data[2])], [int(data[3]), int(data[4])])
         except:
             print(line)
             print(data)
