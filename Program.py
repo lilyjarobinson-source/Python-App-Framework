@@ -18,5 +18,4 @@ demoMenu1.setRunable()
 main.assignMenus([demoMenu1, demoMenu2])
 main.assignIconFileLocation(classPath + "Menus")
 main.activate()
-main.root.mainloop()
 #'''

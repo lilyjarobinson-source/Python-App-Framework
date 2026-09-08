@@ -54,6 +54,7 @@ class main:
         self.currentMenu = self.menus[self.currentMenuIndex]
         self.currentMenu.activate(self, self.theme)
         self.startMenuRunning()
+        self.root.mainloop()
 
     def startMenuRunning(self):
         if self.currentMenu.runable:
