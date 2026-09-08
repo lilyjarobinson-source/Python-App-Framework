@@ -16,5 +16,6 @@ class demoMenu1(menu):
         print("Doing thing!")
 
     def update(self):
-        self.icons["label 3"].set(self.main.keylogger.pressedKeys)
+        #self.icons["label 3"].set(self.main.keylogger.pressedKeys)
+        self.icons["label 3"].set(self.main.root.winfo_pointerx())
         self.updateScreen()
