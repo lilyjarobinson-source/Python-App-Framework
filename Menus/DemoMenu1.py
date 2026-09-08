@@ -11,9 +11,10 @@ class demoMenu1(menu):
 
     def initialise(self):
         print("DemoMenu1 initialised")
+        self.doThing()
 
     def doThing(self):
-        print("Doing thing!")
+        print(0 + self.icons["label 3"].pos[0])
 
     def update(self):
         #self.icons["label 3"].set(self.main.keylogger.pressedKeys)
