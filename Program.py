@@ -13,9 +13,9 @@ demoMenu1 = demoMenu1()
 demoMenu2 = demoMenu2()
 
 demoMenu1.setRunable()
-
 #'''
-main.assignMenus([demoMenu1, demoMenu2])
+main.addMenus({demoMenu1.name : demoMenu1})
+main.addMenus(demoMenu2)
 main.assignIconFileLocation(classPath + "Menus")
-main.activate()
+main.activate(demoMenu2.name)
 #'''

@@ -7,7 +7,7 @@ class demoMenu2(menu):
     variable = "different thing"
 
     def assignIconFunctions(self):
-        self.icons["button 1"].bindFunction(lambda : self.main.changeMenu(0))
+        self.icons["button 1"].bindFunction(lambda : self.main.changeMenu("demoMenu1"))
 
     def initialise(self):
         print("DemoMenu2 initialised")

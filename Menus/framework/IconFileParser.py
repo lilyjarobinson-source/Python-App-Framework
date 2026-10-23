@@ -3,7 +3,7 @@ class iconFileParser:
     def __init__(self):
         self.fileLocation = ""
         self.iconStore = {}
-        self.menus = []
+        self.menus = {}
 
     def assignIconFileLocaion(self, location):
         self.fileLocation = location
@@ -13,7 +13,7 @@ class iconFileParser:
         for i in self.iconStore:
             for x in i.split(","):
                 menuReference = None
-                for m in menus:
+                for m in menus.values():
                     if m.name == x:
                         menuReference = m
                 if menuReference == None:
