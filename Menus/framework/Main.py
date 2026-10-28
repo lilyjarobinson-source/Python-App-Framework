@@ -9,8 +9,8 @@ class main:
     def __init__(self, title, geometry):
         self.title = title
         self.geometry = geometry
-        self.menus = []
-        self.currentMenuIndex = 0
+        self.menus = {}
+        self.currentMenuKey = 0
         self.currentMenu = None
         self.menuWasRunning = False
         self.root = None
@@ -41,17 +41,21 @@ class main:
     def assignIconFileLocation(self, location):
         self.iconFileParser.assignIconFileLocaion(location)
 
-    def assignMenus(self, menus):
-        self.menus = menus
-
     def addMenus(self, menus):
-        self.menus += menus
+        if isinstance(menus, dict):
+            for i in menus:
+                self.menus.update({i : menus[i]})
+        elif isinstance(menus, list):
+            for i in menus:
+                self.menus.update({i.name : i})
+        else:
+            self.menus.update({menus.name : menus})
 
-    def activate(self, startingMenuIndex=0):
+    def activate(self, startingMenuKey):
         self.initialise()
         self.loadTheme()
-        self.currentMenuIndex = startingMenuIndex
-        self.currentMenu = self.menus[self.currentMenuIndex]
+        self.currentMenuKey = startingMenuKey
+        self.currentMenu = self.menus[self.currentMenuKey]
         self.currentMenu.activate(self, self.theme)
         self.startMenuRunning()
         self.root.mainloop()
@@ -72,12 +76,12 @@ class main:
         self.currentMenu.activate(self, self.theme)
         self.startMenuRunning()
 
-    def changeMenu(self, targetIndex):
+    def changeMenu(self, targetMenu):
         self.loadTheme()
         self.stopMenuRunning()
         self.currentMenu.deactivate()
-        self.currentMenuIndex = targetIndex
-        self.currentMenu = self.menus[targetIndex]
+        self.currentMenuKey = targetMenu
+        self.currentMenu = self.menus[targetMenu]
         self.currentMenu.activate(self, self.theme)
         self.startMenuRunning()
 
