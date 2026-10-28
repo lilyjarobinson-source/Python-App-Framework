@@ -283,7 +283,7 @@ class optionBox(obj):
         self.deactivate()
         self.activate(root, theme, self.checkToRunFunction)
 
-    def bindFunctionToKeypress(self, fun):
+    def bindFunctionToChange(self, fun):
         self.fun = fun
 
     def checkToRunFunction(self):
