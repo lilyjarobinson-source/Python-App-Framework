@@ -26,11 +26,10 @@ class iconFileParser:
         try:
             file = open(self.fileLocation + "/Icon file.txt", "r")
             contents = file.read()
+            file.close()
         except:
             print("No icon file path supplied!")
             return None
-        finally:
-            file.close()
         contents = contents.split("\n")
         for i in contents:
             self.parseLine(i)

@@ -15,13 +15,15 @@ class main:
         self.menuWasRunning = False
         self.root = None
         self.theme = {}
+        self.lookForIconFile = True
         self.iconFileParser = iconFileParser()
         self.keylogger = keylogger()
         self.runableMenuThread = None
         self.isFullscreen = False
 
     def initialise(self):
-        self.iconFileParser.assignIconsToMenus(self.menus)
+        if self.lookForIconFile:
+            self.iconFileParser.assignIconsToMenus(self.menus)
         self.root = Tk()
         self.root.title(self.title)
         self.root.geometry(self.geometry)
@@ -37,6 +39,9 @@ class main:
 
         self.root.bind("<KeyPress>", self.keylogger.onKeyEvent)
         self.root.bind("<KeyRelease>", self.keylogger.onKeyEvent)
+
+    def ignoreIconFile(self, look=False):
+        self.lookForIconFile = look
 
     def assignIconFileLocation(self, location):
         self.iconFileParser.assignIconFileLocaion(location)
