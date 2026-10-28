@@ -16,6 +16,7 @@ demoMenu1.setRunable()
 #'''
 main.addMenus({demoMenu1.name : demoMenu1})
 main.addMenus(demoMenu2)
-main.assignIconFileLocation(classPath + "Menus")
+#main.ignoreIconFile()
+#main.assignIconFileLocation(classPath + "Menus")
 main.activate(demoMenu2.name)
 #'''
