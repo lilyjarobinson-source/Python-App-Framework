@@ -284,7 +284,7 @@ class optionBox(obj):
     def setOptions(self, root, theme, options):
         self.options = options
         self.deactivate()
-        self.activate(root, theme, self.checkToRunFunction)
+        self.activate(root, theme)
 
     def bindFunctionToChange(self, fun):
         self.fun = fun
