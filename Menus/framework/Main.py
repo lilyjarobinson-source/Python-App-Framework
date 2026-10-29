@@ -66,7 +66,7 @@ class main:
         self.root.mainloop()
 
     def startMenuRunning(self):
-        if self.currentMenu.runable:
+        if self.currentMenu.running and self.currentMenu.runable:
             self.runableMenuThread = threading.Thread(target=self.currentMenu.startRunning)
             self.runableMenuThread.start()
 

@@ -34,7 +34,7 @@ class menu:
 
     # Ran to teardown the menu
     def deactivate(self):
-        self.running = False
+        self.stopRunning()
         for i in self.icons.values():
             i.deactivate()
         self.unitialise()
@@ -53,6 +53,9 @@ class menu:
     # code for reloading data goes here
     def reload(self):
         pass
+
+    def setToStartRunning(self, running=True):
+        self.running = running
 
     def setRunable(self, runable=True):
         self.runable = runable
