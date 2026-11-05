@@ -7,16 +7,16 @@ from DemoMenu1 import demoMenu1
 from DemoMenu2 import demoMenu2
 
 main = main("test", "800x500")
-main.fullscreen()
 
 demoMenu1 = demoMenu1()
 demoMenu2 = demoMenu2()
 
-demoMenu1.setRunable()
+demoMenu1.setToStartRunning()
 #'''
+#main.fullscreen()
 main.addMenus({demoMenu1.name : demoMenu1})
 main.addMenus(demoMenu2)
 #main.ignoreIconFile()
-#main.assignIconFileLocation(classPath + "Menus")
+main.assignIconFileLocation(classPath + "Menus")
 main.activate(demoMenu2.name)
 #'''

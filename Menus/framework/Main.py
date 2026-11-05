@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk
 from IconFileParser import iconFileParser
 from Keylogger import keylogger
 import threading
@@ -59,6 +59,8 @@ class main:
     def activate(self, startingMenuKey):
         self.initialise()
         self.loadTheme()
+        #for i in self.menus.values():
+        #    i.assignIconFunctions()
         self.currentMenuKey = startingMenuKey
         self.currentMenu = self.menus[self.currentMenuKey]
         self.currentMenu.activate(self, self.theme)
