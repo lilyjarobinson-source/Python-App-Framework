@@ -15,7 +15,6 @@ class main:
         self.menuWasRunning = False
         self.root = None
         self.theme = {}
-        self.lookForIconFile = True
         self.iconFileParser = iconFileParser()
         self.keylogger = keylogger()
         self.runableMenuThread = None
@@ -44,15 +43,9 @@ class main:
         self.historyStack = stack()
         self.futureStack = stack()
 
-    def ignoreIconFile(self, look=False):
-        self.lookForIconFile = look
-
-    def assignIconFileLocation(self, location):
+    def assignMenuIcons(self, location):
         self.iconFileParser.assignIconFileLocaion(location)
-
-    def assignMenuIcons(self):
-        if self.lookForIconFile:
-            self.iconFileParser.assignIconsToMenus(self.menus)
+        self.iconFileParser.assignIconsToMenus(self.menus)
 
     def addMenus(self, menus):
         if isinstance(menus, dict):

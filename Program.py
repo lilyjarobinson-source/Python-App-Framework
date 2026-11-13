@@ -17,13 +17,11 @@ demoMenu1.setToStartRunning()
 main.addMenus({demoMenu1.name : demoMenu1})
 main.addMenus(demoMenu2)
 
-main.assignIconFileLocation(classPath + "Menus")
-main.assignMenuIcons()
+main.assignMenuIcons(classPath + "Menus")
 
 for i in [demoMenu1, demoMenu2]:
     i.icons["backButton"].bindFunction(main.back)
     i.icons["forwardButton"].bindFunction(main.forward)
 
-#main.ignoreIconFile()
 main.activate(demoMenu2.name)
 #'''
