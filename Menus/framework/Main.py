@@ -1,6 +1,7 @@
 from tkinter import Tk
 from IconFileParser import iconFileParser
 from Keylogger import keylogger
+from Stack import stack
 from threading import Thread
 class main:
     hexDigits = "0123456789abcdef"
@@ -20,9 +21,10 @@ class main:
         self.runableMenuThread = None
         self.isFullscreen = False
 
+        self.historyStack = None
+        self.futureStack = None
+
     def initialise(self):
-        if self.lookForIconFile:
-            self.iconFileParser.assignIconsToMenus(self.menus)
         self.root = Tk()
         self.root.title(self.title)
         self.root.geometry(self.geometry)
@@ -38,12 +40,19 @@ class main:
 
         self.root.bind("<KeyPress>", self.keylogger.onKeyEvent)
         self.root.bind("<KeyRelease>", self.keylogger.onKeyEvent)
+        
+        self.historyStack = stack()
+        self.futureStack = stack()
 
     def ignoreIconFile(self, look=False):
         self.lookForIconFile = look
 
     def assignIconFileLocation(self, location):
         self.iconFileParser.assignIconFileLocaion(location)
+
+    def assignMenuIcons(self):
+        if self.lookForIconFile:
+            self.iconFileParser.assignIconsToMenus(self.menus)
 
     def addMenus(self, menus):
         if isinstance(menus, dict):
@@ -82,14 +91,32 @@ class main:
         self.currentMenu.activate(self, self.theme)
         self.startMenuRunning()
 
-    def changeMenu(self, targetMenu):
+    def changeMenu(self, targetMenu, ignoreHistory=True):
         self.loadTheme()
         self.stopMenuRunning()
         self.currentMenu.deactivate()
+        if ignoreHistory:
+            if not self.futureStack.isEmpty():
+                self.futureStack.clear()
+            self.historyStack.push(self.currentMenu)
         self.currentMenuKey = targetMenu
         self.currentMenu = self.menus[targetMenu]
         self.currentMenu.activate(self, self.theme)
         self.startMenuRunning()
+
+    def back(self):
+        nextMenuRef = self.historyStack.pop()
+        if nextMenuRef == None:
+            return None
+        self.futureStack.push(nextMenuRef)
+        self.changeMenu(nextMenuRef.name, False)
+        
+    def forward(self):
+        nextMenuRef = self.futureStack.pop()
+        if nextMenuRef == None:
+            return None
+        self.historyStack.push(nextMenuRef)
+        self.changeMenu(nextMenuRef.name, False)
 
     def loadTheme(self):
         try:
