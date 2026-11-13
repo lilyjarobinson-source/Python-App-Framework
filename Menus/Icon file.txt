@@ -5,3 +5,5 @@ canvas::canvas,,1,,41,,100,,100
 M:demoMenu1,demoMenu2
 button 1::button,,1,,1,,100,,19,,text
 label 1::label,,1,,41,,100,,19,,menu 2
+backButton::button,,102,,1,,100,,19,,Back
+forwardButton::button,,102,,21,,100,,19,,Forward
