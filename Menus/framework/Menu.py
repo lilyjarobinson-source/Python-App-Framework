@@ -1,5 +1,4 @@
-import random, time
-from tkinter import *
+from tkinter import Button, Label, Entry, OptionMenu, Listbox, Canvas, StringVar
 hexDigits = "0123456789abcdef"
 
 
@@ -56,6 +55,7 @@ class menu:
 
     def setToStartRunning(self, running=True):
         self.running = running
+        self.runable = True
 
     def setRunable(self, runable=True):
         self.runable = runable
@@ -78,15 +78,15 @@ class menu:
     # custom code for starting running goes here
     def runInitialisation(self):
         pass
-    
+
     # custom code for ending running goes here
     def runDeinitialisation(self):
         pass
-    
+
     # code for updating the menu goes here
     def update(self):
         pass
-    
+
 
 class obj:
     def __init__(self, pos, dimensions):
@@ -102,7 +102,7 @@ class obj:
             self.setColour(theme)
             self.initialise(root)
             self.active = True
-        
+
     def deactivate(self):
         if self.active:
             self.active = False
@@ -131,7 +131,7 @@ class obj:
         if not notHex:
             colour = "#" + colour
         self.colour = colour
-        
+
         colour = theme[self.name + "Tx"]
         notHex = False
         for i in colour:
@@ -144,10 +144,10 @@ class obj:
 
     def updateBgColour(self, colour):
         self.obj.config(bg=colour)
-        
+
     def updateTxColour(self, colour):
         self.obj.config(fg=colour)
-        
+
 
 class button(obj):
     colour = "#e0e0e0"
@@ -192,12 +192,12 @@ class label(obj):
             case "e":
                 self.textJustify = "right"
             case _:
-                self.textJustify = "center"   
+                self.textJustify = "center"
 
     def initialise(self, root):
         self.obj = Label(root, text=self.text, borderwidth=1, relief="solid", bg=self.colour, fg=self.textColour, anchor=self.textAlign, justify=self.textJustify)
         self.place()
-        
+
     def set(self, text):
         self.text = str(text)[:]
         self.obj.config(text=self.text)
@@ -260,7 +260,7 @@ class optionBox(obj):
         self.fun = None
         self.options = options
         self.suppressChanges = False
-    
+
     def initialise(self, root):
         self.suppressChanges = True
         if self.selectedOption == None:
@@ -344,8 +344,8 @@ class listBox(obj):
         self.obj.delete(index)
 
     def clear(self):
+        self.obj.delete(0, len(self.items))
         self.items = []
-        self.obj.delete(0, END)
 
     def getItemAtIndex(self, index):
         return self.items[index]
@@ -358,7 +358,7 @@ class canvas(obj):
         super().__init__(pos, dimensions)
         self.suppressChanges = False
         self.boundFunctions = {}
-    
+
     def initialise(self, root):
         self.suppressChanges = True
         self.obj = Canvas(root, borderwidth=1, relief="solid", bg=self.colour, highlightthickness=0)
@@ -376,16 +376,16 @@ class canvas(obj):
 
     def image(self, x, y, image, anchor="center"):
         self.obj.create_image(x, y, image=image, anchor=anchor)
-        
+
     def write(self, x, y, text, anchor="center", font="TkDefaultFont"):
         self.obj.create_text(x, y, text=text, fill=self.textColour, anchor=anchor, font=font)
 
     def clear(self):
         self.obj.delete("all")
 
-    def bindFuncitonToMouseEvent(self, event, fun):
+    def bindFunctionToMouseEvent(self, event, fun):
         self.bindFunction(event, fun)
-        self.obj.bind(event, lambda *args : self.checkForFunction(event))
+        self.obj.bind(event, lambda event : self.checkForFunction(event))
 
     def bindFunction(self, event, fun):
         self.boundFunctions.update({event : fun})
@@ -403,14 +403,14 @@ class image(obj):
         super().__init__(pos, dimensions)
         self.image = image
         self.name = "label"
-                
+
     def initialise(self, root):
         if self.image == None:
             self.obj = Label(root, text="image", borderwidth=1, relief="solid", bg=self.colour, fg=self.textColour)
         else:
             self.obj = Label(root, image=self.image, borderwidth=1, relief="solid")
         self.place()
-        
+
     def set(self, image):
         if self.image == None:
             self.obj.config(text="")

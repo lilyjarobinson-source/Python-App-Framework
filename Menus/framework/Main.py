@@ -1,8 +1,7 @@
-from tkinter import *
+from tkinter import Tk
 from IconFileParser import iconFileParser
 from Keylogger import keylogger
-import threading
-from time import time
+from threading import Thread
 class main:
     hexDigits = "0123456789abcdef"
     
@@ -59,6 +58,8 @@ class main:
     def activate(self, startingMenuKey):
         self.initialise()
         self.loadTheme()
+        #for i in self.menus.values():
+        #    i.assignIconFunctions()
         self.currentMenuKey = startingMenuKey
         self.currentMenu = self.menus[self.currentMenuKey]
         self.currentMenu.activate(self, self.theme)
@@ -67,7 +68,7 @@ class main:
 
     def startMenuRunning(self):
         if self.currentMenu.running and self.currentMenu.runable:
-            self.runableMenuThread = threading.Thread(target=self.currentMenu.startRunning)
+            self.runableMenuThread = Thread(target=self.currentMenu.startRunning)
             self.runableMenuThread.start()
 
     def stopMenuRunning(self):
