@@ -1,4 +1,3 @@
-import random, time
 from tkinter import Button, Label, Entry, OptionMenu, Listbox, Canvas, StringVar
 hexDigits = "0123456789abcdef"
 
